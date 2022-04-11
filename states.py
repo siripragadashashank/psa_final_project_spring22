@@ -34,3 +34,31 @@ def next_state(cur, next, player):
                 next_s[j] = player
                 next.append(next_s)
     # print(next, '\n', 'len of state', len(next))
+
+
+def remove_duplicates(states):
+    '''
+    Remove duplicate states after checking
+    possible flips and rotations
+    '''
+    n = len(states)
+    dups = []
+
+    for i in range(n - 1):
+
+        cur = list(states[i])
+        for j in range(i+1, n):
+            nxt = states[j]
+            match, nrotates, nflips = isequal(nxt, cur)
+            if match: dups.append(j)
+            else: continue
+
+    dups = list(set(dups))
+    uniq = []
+
+    for p in range(n):
+
+        if(bool(dups.count(p))): continue
+        else: uniq.append(states[p])
+
+    return uniq
