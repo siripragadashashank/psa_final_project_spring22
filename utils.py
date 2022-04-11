@@ -13,7 +13,7 @@ def save(states, filename):
 
 
 def load(filename):
-    states = []
+    states = {}
     
     with open(filename, 'r') as f:
         lines = [x.strip() for x in f.readlines()]
@@ -21,13 +21,12 @@ def load(filename):
         output  = []
         
         for line in lines:
-            print(line)
+            # print(line)
             temp = [int(x) for x in line]
             output.append(temp)
-        states = []
         
         for i in range(0, len(output), 2):
-            states.append([output[i], output[i+1]])
+            states[tuple(output[i])] = output[i+1]
 
     return states
 
