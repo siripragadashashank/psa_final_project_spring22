@@ -1,9 +1,9 @@
 import os.path
+from utils import save, load, ui
 from argparse import ArgumentParser
 from menace import menace_vs_human, menace_train
-from utils import save, load, ui
 from states import isequal, inverse_transform_action
-from states import check_win, next_level, delete_duplicates, set_random_moves
+from states import check_win, next_state, remove_duplicates, set_random_moves
 
 
 def init_states():
@@ -20,55 +20,54 @@ def init_states():
 
 	else:
 		print("Creating all possible states")
-		
 		print("No of first possible move states: ", len(states1))
 		print('#######################################################\n')
 
-		next_level(states1,states2,2)
+		next_state(states1,states2,2)
 		print("No. of next possible states: ", len(states2))
-		states2 = delete_duplicates(states2)
+		states2 = remove_duplicates(states2)
 		print("Reduced no. of states after eliminating duplicates: ", len(states2))
 		print('#######################################################\n')
 
-		next_level(states2,states3,1)
+		next_state(states2,states3,1)
 		print("No. of next possible states: ", len(states3))
-		states3 = delete_duplicates(states3)
+		states3 = remove_duplicates(states3)
 		print("Reduced no. of states after eliminating duplicates: ", len(states3))
 		print('#######################################################\n')
 
-		next_level(states3,states4,2)
+		next_state(states3,states4,2)
 		print("No. of next possible states: ", len(states4))
-		states4 = delete_duplicates(states4)
+		states4 = remove_duplicates(states4)
 		print("Reduced no. of states after eliminating duplicates: ", len(states4))
 		print('#######################################################\n')
 		
-		next_level(states4,states5,1)
+		next_state(states4,states5,1)
 		print("No. of next possible states: ", len(states5))
-		states5 = delete_duplicates(states5)
+		states5 = remove_duplicates(states5)
 		print("Reduced no. of states after eliminating duplicates: ", len(states5))
 		print('#######################################################\n')
 		
-		next_level(states5,states6,2)
+		next_state(states5,states6,2)
 		print("No. of next possible states: ", len(states6))
-		states6 = delete_duplicates(states6)
+		states6 = remove_duplicates(states6)
 		print("Reduced no. of states after eliminating duplicates: ", len(states6))
 		print('#######################################################\n')
 		
-		next_level(states6,states7,1)
+		next_state(states6,states7,1)
 		print("No. of next possible states: ", len(states7))
-		states7 = delete_duplicates(states7)
+		states7 = remove_duplicates(states7)
 		print("Reduced no. of states after eliminating duplicates: ", len(states7))
 		print('#######################################################\n')
 		
-		next_level(states7,states8,2)
+		next_state(states7,states8,2)
 		print("No. of next possible states: ", len(states8))
-		states8 = delete_duplicates(states8)
+		states8 = remove_duplicates(states8)
 		print("Reduced no. of states after eliminating duplicates: ", len(states8))
 		print('#######################################################\n')
 		
-		next_level(states8,states9,1)
+		next_state(states8,states9,1)
 		print("No. of next possible states: ", len(states9))
-		states9 = delete_duplicates(states9)
+		states9 = remove_duplicates(states9)
 		print("Reduced no. of states after eliminating duplicates: ", len(states9))
 		print('#######################################################\n')
 		
