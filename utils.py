@@ -2,11 +2,12 @@ def save(states, filename):
     with open(filename, 'w') as f:
         
         for state in states:
-            out = [str(x) for x in state[0]]
+            # print(state)
+            out = [str(x) for x in state]
             out = ','.join(out)
             f.write(out+'\n')
             
-            out = [str(x) for x in state[1]]
+            out = [str(x) for x in states[state]]
             out = ','.join(out)
             f.write(out+'\n')
 
@@ -20,6 +21,7 @@ def load(filename):
         output  = []
         
         for line in lines:
+            print(line)
             temp = [int(x) for x in line]
             output.append(temp)
         states = []

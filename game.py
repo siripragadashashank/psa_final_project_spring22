@@ -3,7 +3,7 @@ from utils import save, load, ui
 from argparse import ArgumentParser
 from menace import menace_vs_human, menace_train
 from states import isequal, inverse_transform_action
-from states import check_win, next_state, remove_duplicates, set_random_moves
+from states import check_win, next_state, remove_duplicates, set_possible_moves
 
 
 def init_states():
@@ -76,10 +76,11 @@ def init_states():
 					states8
 
 		## adding next possible moves for each of the states 
-		states = set_random_moves(states)
+		states = set_possible_moves(states)
 
 		## adding first possible moves for MENACE - 0, 1, 4
-		states = states + [[[0,0,0,0,0,0,0,0,0],[0,0,1,1,4,4]]]
+
+		states[tuple([0,0,0,0,0,0,0,0,0])] = [0,0,1,1,4,4]
 		# print("No of state: ", len(states))
 
 		save(states, 'init_states.dat')
