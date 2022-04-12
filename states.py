@@ -62,3 +62,88 @@ def remove_duplicates(states):
         else: uniq.append(states[p])
 
     return uniq
+
+
+def set_possible_moves(states):
+    '''
+    Given a state set all possible moves
+
+    Returns 
+        possible_moves (hashmap): possible moves for 
+        each state in states  
+    '''
+    n = len(states)
+    possible_moves = {}
+
+    for i in range(n):
+        actions = []
+        for j in range(len(states[i])):
+            if states[i][j] == 0:
+                actions.append(j)
+                actions.append(j)
+
+        possible_moves[tuple(states[i])] = actions
+    
+    return possible_moves
+
+def get_required_action(cur_action, nrotates, nflips):
+    '''
+    Given an action, number of rotation and flips
+
+    Retruns: Transformed action 
+    '''
+    if nflips == 1:
+
+        if cur_action == 0:   cur_action = 2
+        elif cur_action == 3: cur_action = 5
+        elif cur_action == 6: cur_action = 8
+        elif cur_action == 2: cur_action = 0
+        elif cur_action == 5: cur_action = 3
+        elif cur_action == 8: cur_action = 6
+
+    while nrotates > 0:
+
+        nrotates = nrotates - 1
+        
+        if cur_action == 1:   cur_action = 5
+        elif cur_action == 5: cur_action = 7
+        elif cur_action == 7: cur_action = 3
+        elif cur_action == 3: cur_action = 1
+        elif cur_action == 0: cur_action = 2
+        elif cur_action == 2: cur_action = 8
+        elif cur_action == 8: cur_action = 6
+        elif cur_action == 6: cur_action = 0
+
+    return cur_action
+
+
+def get_original_action(cur_action, nrotates, nflips):
+    '''
+    Given an action, number of rotation and flips
+
+    Returns: Original action 
+    '''
+    nrotates = 4 - nrotates
+    
+    while nrotates > 0:
+        
+        nrotates = nrotates - 1
+        
+        if cur_action == 1:   cur_action = 5
+        elif cur_action == 5: cur_action = 7
+        elif cur_action == 7: cur_action = 3
+        elif cur_action == 3: cur_action = 1
+        elif cur_action == 0: cur_action = 2
+        elif cur_action == 2: cur_action = 8
+        elif cur_action == 8: cur_action = 6
+        elif cur_action == 6: cur_action = 0
+    
+    if nflips == 1:
+        if cur_action == 0:   cur_action = 2
+        elif cur_action == 3: cur_action = 5
+        elif cur_action == 6: cur_action = 8
+        elif cur_action == 2: cur_action = 0
+        elif cur_action == 5: cur_action = 3
+        elif cur_action == 8: cur_action = 6
+
+    return cur_action

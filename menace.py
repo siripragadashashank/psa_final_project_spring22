@@ -1,8 +1,8 @@
 import sys
 import random, logging
 from utils import save, load, ui
-from states import isequal, inverse_transform_action, forward_transform_action
-from states import check_win, next_state, remove_duplicates
+from states import isequal, get_original_action, get_required_action
+from states import is_win, next_state, remove_duplicates
 
 
 def menace_vs_human(states, ngames):
@@ -38,7 +38,7 @@ def menace_vs_human(states, ngames):
                             most_prob_move = move
                             count = states[s].count(move)
   
-                    menace_move = inverse_transform_action(most_prob_move, nrotations, nflips)
+                    menace_move = get_original_action(most_prob_move, nrotations, nflips)
                     
                     game_state[-1][1].append(menace_move)                    
                     new_state = list(game_state[-1][0])

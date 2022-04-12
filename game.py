@@ -3,8 +3,7 @@ import logging
 from utils import save, load, ui
 from argparse import ArgumentParser
 from menace import menace_vs_human #, menace_train
-from states import isequal, inverse_transform_action
-from states import check_win, next_state, remove_duplicates, set_possible_moves
+from states import next_state, remove_duplicates, set_possible_moves
 
 
 def init_states():
