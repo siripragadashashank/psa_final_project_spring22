@@ -1,9 +1,8 @@
 import sys
 import random, logging
 from utils import save, load, ui
-from states import isequal, get_original_action, get_required_action
-from states import is_win, next_state, remove_duplicates
-
+from states import get_required_action, get_original_action 
+from states import is_win, check_equal, next_state, remove_duplicates
 
 def menace_vs_human(states, ngames):
     '''
@@ -22,7 +21,7 @@ def menace_vs_human(states, ngames):
             print("MENACE's Turn\n")
             for s in states:
 
-                match, nrotations, nflips =  isequal(list(s), game_state[-1][0])
+                match, nrotations, nflips =  check_equal(list(s), game_state[-1][0])
                 
                 if match:
                     most_prob_move, count = 0, 0

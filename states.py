@@ -147,3 +147,45 @@ def get_original_action(cur_action, nrotates, nflips):
         elif cur_action == 8: cur_action = 6
 
     return cur_action
+
+
+def is_win(board_state):
+    '''
+    Given a board state check whether MENACE or human has won
+
+    Returns: 1 for MENACE win, 2 for human win, 0 for no win
+    '''
+
+    ## Cases when MENACE has won -> return 1
+    
+    if board_state[0] == 1 and board_state[1] == 1 and board_state[2] == 1: return 1
+    if board_state[0] == 1 and board_state[3] == 1 and board_state[6] == 1: return 1
+    if board_state[0] == 1 and board_state[4] == 1 and board_state[8] == 1: return 1
+    if board_state[1] == 1 and board_state[4] == 1 and board_state[7] == 1: return 1
+    if board_state[2] == 1 and board_state[5] == 1 and board_state[8] == 1: return 1
+    if board_state[2] == 1 and board_state[4] == 1 and board_state[6] == 1: return 1
+    if board_state[3] == 1 and board_state[4] == 1 and board_state[5] == 1: return 1
+    if board_state[6] == 1 and board_state[7] == 1 and board_state[8] == 1: return 1
+
+    ## Cases when human has won -> return 2
+
+    if board_state[0] == 2 and board_state[1] == 2 and board_state[2] == 2: return 2
+    if board_state[0] == 2 and board_state[3] == 2 and board_state[6] == 2: return 2
+    if board_state[0] == 2 and board_state[4] == 2 and board_state[8] == 2: return 2
+    if board_state[1] == 2 and board_state[4] == 2 and board_state[7] == 2: return 2
+    if board_state[2] == 2 and board_state[5] == 2 and board_state[8] == 2: return 2
+    if board_state[2] == 2 and board_state[4] == 2 and board_state[6] == 2: return 2
+    if board_state[3] == 2 and board_state[4] == 2 and board_state[5] == 2: return 2
+    if board_state[6] == 2 and board_state[7] == 2 and board_state[8] == 2: return 2
+    
+    return 0
+
+def check_equal(state, present_state):
+    '''
+    Given two states check whether they are equal 
+    after flips and rotations
+    
+    Returns : bool indicating equal or not
+    '''
+    pass
+
