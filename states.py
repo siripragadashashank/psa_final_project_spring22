@@ -1,3 +1,5 @@
+from collection import defaultdict
+
 def vflip(state):
     '''
     Mirror image of a state
@@ -180,12 +182,68 @@ def is_win(board_state):
     
     return 0
 
-def check_equal(state, present_state):
+def match_two_states(s1, s2):
+    '''
+    Given two states check whether they are 
+    equal by iterating through them
+
+    Returns : bool
+    '''
+    is_match = True
+    for i in range(len(s1)):
+        if s1[i] != s2[i]:
+            is_match = False
+            break
+    return is_match
+
+def check_equal(state_1, state_2):
     '''
     Given two states check whether they are equal 
-    after flips and rotations
+    after all possible flips and rotations
     
-    Returns : bool indicating equal or not
+    Returns : bool, nrotations, nflips
     '''
-    pass
+
+    nflips, nrotations = 0, 0
+    s1, s2 = state_1, list(state_2)
+    
+    if match_two_states(s1, s2) : return True, nrotations, nflips
+    
+    ## one rotation
+    nrotations += 1
+    s2 = rotate90(s2)
+    if match_two_states(s1, s2) : return True, nrotations, nflips
+    
+    ## two rotations
+    nrotations += 1
+    s2 = rotate90(s2)
+    if match_two_states(s1, s2) : return True, nrotations, nflips
+    
+    ## three rotations
+    nrotations += 1
+    s2 = rotate90(s2)
+    if match_two_states(s1, s2) : return True, nrotations, nflips
+
+    ## Flip
+    s2 = vflip(list(state_2))
+    nflips += 1
+    nrotations = 0    
+    if match_two_states(s1, s2) : return True, nrotations, nflips
+
+    ## one rotation
+    nrotations += 1
+    s2 = rotate90(s2)
+    if match_two_states(s1, s2) : return True, nrotations, nflips
+    
+    ## two rotations
+    nrotations += 1
+    s2 = rotate90(s2)
+    if match_two_states(s1, s2) : return True, nrotations, nflips
+    
+    ## three rotations
+    nrotations += 1
+    s2 = rotate90(s2)
+    if match_two_states(s1, s2) : return True, nrotations, nflips
+    
+    return False, nrotations, nflips
 
