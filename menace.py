@@ -51,7 +51,7 @@ def menace_vs_human(states, ngames):
             
             ui(game_state[-1][0])    
             
-            if check_win(game_state[-1][0])!= 0:
+            if is_win(game_state[-1][0])!= 0:
                 print("Menace won!") 
                 break
             
@@ -70,7 +70,7 @@ def menace_vs_human(states, ngames):
 
             game_state.append([new_state, []])
 
-            if check_win(game_state[-1][0])!= 0:
+            if is_win(game_state[-1][0])!= 0:
                 print("You won!") 
                 break
 

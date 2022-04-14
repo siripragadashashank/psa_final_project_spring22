@@ -1,4 +1,4 @@
-from collection import defaultdict
+from collections import defaultdict
 
 def vflip(state):
     '''
@@ -51,7 +51,7 @@ def remove_duplicates(states):
         cur = list(states[i])
         for j in range(i+1, n):
             nxt = states[j]
-            match, nrotates, nflips = isequal(nxt, cur)
+            match, nrotates, nflips = check_equal(nxt, cur)
             if match: dups.append(j)
             else: continue
 
