@@ -1,3 +1,6 @@
+import random
+import logging
+
 def save(states, filename):
     with open(filename, 'w') as f:
         
@@ -29,6 +32,37 @@ def load(filename):
             states[tuple(output[i])] = output[i+1]
 
     return states
+
+
+def strategy(actions, epsilon):
+
+    a = list(set(actions))
+    
+    if len(a) == 1:
+        return a[0]
+    
+    best_action = max(set(actions), key=actions.count)
+    random_action = random.choice(a)
+    
+    if(random.random() > epsilon):
+        return best_action
+    else:
+        return random_action
+
+
+def setup_logger(name, log_file, level=logging.INFO):
+    """
+    Setting up logger
+    """
+    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+    handler = logging.FileHandler(log_file)        
+    handler.setFormatter(formatter)
+
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+    logger.addHandler(handler)
+
+    return logger
 
 def ui(state):
     
