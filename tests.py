@@ -60,7 +60,7 @@ class TestMenaceStateMethods(unittest.TestCase):
         Test for getting back the original state, 
         number of rotations and flips done and current state
         ''' 
-        self.assertEqual(get_required_action(6, 1, 0), 0)
+        self.assertEqual(get_original_action(6, 3, 0), 0)
 
     def test_is_win(self):
         '''
