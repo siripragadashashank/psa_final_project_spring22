@@ -1,8 +1,8 @@
-from collections import defaultdict
-
 def vflip(state):
     '''
-    Mirror image of a state
+    Get Mirror image (flipped) of a state
+
+    Returns: Flipped state
     '''
 
     flipped = list(state)
@@ -14,7 +14,9 @@ def vflip(state):
 
 def rotate90(state):
     '''
-    Rotate a state by 90 degrees
+    Rotate a given state by 90 degrees right
+
+    Returns: Rotated state
     '''
     rotated = list(state)
     
@@ -35,13 +37,15 @@ def next_state(cur, next, player):
                 next_s = list(cur[i]) 
                 next_s[j] = player
                 next.append(next_s)
+    return next
     # print(next, '\n', 'len of state', len(next))
-
 
 def remove_duplicates(states):
     '''
     Remove duplicate states after checking
     possible flips and rotations
+
+    Returns : states after removing duplicates
     '''
     n = len(states)
     dups = []
@@ -66,13 +70,12 @@ def remove_duplicates(states):
     return uniq
 
 
-def set_possible_moves(states):
+def set_possible_moves(states, alpha=2):
     '''
     Given a state set all possible moves
 
-    Returns 
-        possible_moves (hashmap): possible moves for 
-        each state in states  
+    Returns : possible_moves (hashmap): possible moves for 
+              each state in states  
     '''
     n = len(states)
     possible_moves = {}
@@ -81,12 +84,15 @@ def set_possible_moves(states):
         actions = []
         for j in range(len(states[i])):
             if states[i][j] == 0:
-                actions.append(j)
-                actions.append(j)
+                for alp in range(alpha):
+                    actions.append(j)
+                    #actions.append(j)
 
         possible_moves[tuple(states[i])] = actions
     
     return possible_moves
+
+
 
 def get_required_action(cur_action, nrotates, nflips):
     '''
@@ -118,7 +124,6 @@ def get_required_action(cur_action, nrotates, nflips):
 
     return cur_action
 
-
 def get_original_action(cur_action, nrotates, nflips):
     '''
     Given an action, number of rotation and flips
@@ -141,6 +146,7 @@ def get_original_action(cur_action, nrotates, nflips):
         elif cur_action == 6: cur_action = 0
     
     if nflips == 1:
+
         if cur_action == 0:   cur_action = 2
         elif cur_action == 3: cur_action = 5
         elif cur_action == 6: cur_action = 8
@@ -201,7 +207,9 @@ def check_equal(state_1, state_2):
     Given two states check whether they are equal 
     after all possible flips and rotations
     
-    Returns : bool, nrotations, nflips
+    Returns : bool - indicating whether two states or equal
+              nrotations - number of rotations to achieve equality
+              nflips - number of flips to achieve equality
     '''
 
     nflips, nrotations = 0, 0
@@ -246,4 +254,5 @@ def check_equal(state_1, state_2):
     if match_two_states(s1, s2) : return True, nrotations, nflips
     
     return False, nrotations, nflips
+
 
