@@ -27,3 +27,11 @@ To train the MENACE algorithm, run
 - mode : train (for training mode)
 - iterations : Number of iterations to train MENACE
 - probability : probability that the human agent opponent follows the ideal strategy
+
+### Play against trained MENACE
+
+To play against the trained MENACE, run
+
+`python game.py --mode play`
+
+This will initialize a command line interface enabling user to play against MENACE
