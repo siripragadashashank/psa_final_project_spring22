@@ -26,12 +26,17 @@ To train the MENACE algorithm, run
 
 - mode : train (for training mode)
 - iterations : Number of iterations to train MENACE
+	- iterations default : 1000
 - probability : probability that the human agent opponent follows the ideal strategy
+	- probability default : 0.7 (1 - epsilon, where epsilon = 0.3) 
 
 ### Play against trained MENACE
 
 To play against the trained MENACE, run
 
 `python game.py --mode play`
+
+- mode : play 
+	- for playing against MENACE
 
 This will initialize a command line interface enabling user to play against MENACE

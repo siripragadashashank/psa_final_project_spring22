@@ -97,8 +97,8 @@ if __name__ == '__main__':
 
 	parser = ArgumentParser()
 	parser.add_argument('--mode', help='Play against menace or Train it')
-	parser.add_argument('--iterations', type=int, help='Number of iterations for training')
-	parser.add_argument('--probability', help='Probability for best strategy')
+	parser.add_argument('--iterations', type=int, help='Number of iterations for training', default=1000)
+	parser.add_argument('--probability', help='Probability for best strategy', default=0.7)
 
 	args = parser.parse_args()
 	states = init_states(args.mode)
