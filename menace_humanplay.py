@@ -1,4 +1,5 @@
 import sys
+import random
 import logging
 from utils import ui
 from states import check_equal, get_original_action, get_required_action
@@ -28,6 +29,7 @@ def menace_vs_human(states, ngames):
                     
                     # next moves
                     moves = list(set(states[s])) 
+                    
                     for move in moves:
                         pscore = states[s].count(move)/len(states[s]) * 100
                         print("Probability for move: {} {} %".format(move, pscore))
@@ -36,6 +38,8 @@ def menace_vs_human(states, ngames):
                         if(states[s].count(move) > count):
                             most_prob_move = move
                             count = states[s].count(move)
+                    
+                    #most_prob_move = random.choice(states[s])
   
                     menace_move = get_original_action(most_prob_move, 
                                                         nrotations, 

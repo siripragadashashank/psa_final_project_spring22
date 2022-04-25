@@ -68,15 +68,18 @@ def menace_train(states, iterations, probability):
     
     for i in range(iterations): 
 
-        if i < iterations * probability:
-            # random game with optimal human agent
-            menace_agent_prob = 1 
-            human_agent_prob = 0
+        # if i < iterations * probability:
+        #     # random game with optimal human agent
+        #     menace_agent_epsilon = 1 
+        #     human_agent_epsilon = 0
         
-        else:
-            # random game with random human agent
-            menace_agent_prob = 1
-            human_agent_prob = 1
+        # else:
+        #     # random game with random human agent
+        #     menace_agent_epsilon = 1
+        #     human_agent_epsilon = 1
+
+        menace_agent_epsilon = 1 - probability
+        human_agent_epsilon = 1 - probability
 
         training_log.info("Training Game {} Time: {}".format(i, datetime.datetime.now()))
 
@@ -84,7 +87,7 @@ def menace_train(states, iterations, probability):
         
         win = 0
         
-        training_log.info("menace_agent_prob: {} human_agent_prob: {} ".format(menace_agent_prob, human_agent_prob))
+        training_log.info("menace_agent_epsilon: {} human_agent_epsilon: {} ".format(menace_agent_epsilon, human_agent_epsilon))
         
         while True:
 
@@ -94,7 +97,7 @@ def menace_train(states, iterations, probability):
                 
                 if match:
 
-                    move1_internal = strategy(states[s], menace_agent_prob)
+                    move1_internal, menace_agent_epsilon = strategy(states[s], menace_agent_epsilon)
 
                     move1_actual = get_original_action(move1_internal, rot, flip)
 
@@ -124,7 +127,7 @@ def menace_train(states, iterations, probability):
                 
                 if match:
 
-                    move2_internal = strategy(states[s], human_agent_prob)
+                    move2_internal, human_agent_epsilon = strategy(states[s], human_agent_epsilon)
 
                     move2_actual = get_original_action(move2_internal, rot, flip)
                     

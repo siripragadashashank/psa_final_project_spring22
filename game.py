@@ -1,3 +1,4 @@
+import time
 import os.path
 import logging
 from utils import setup_logger
@@ -107,8 +108,11 @@ if __name__ == '__main__':
 		menace_vs_human(states, 1)
 
 	if args.mode == 'train':
+		start = time.time()
 		print("Training MENACE for {} iterations, refer training.log for details".format(args.iterations))
 		menace_train(states, args.iterations, float(args.probability))
+		end = time.time()
+		print("Training took {}".format(end-start))
 		print("MENACE is trained and ready to play.")
 		save(states, 'model.dat')
 	

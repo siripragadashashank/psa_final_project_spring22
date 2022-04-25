@@ -34,7 +34,7 @@ def load(filename):
     return states
 
 
-def strategy(actions, epsilon):
+def strategy(actions, eps):
 
     a = list(set(actions))
     
@@ -44,10 +44,12 @@ def strategy(actions, epsilon):
     best_action = max(set(actions), key=actions.count)
     random_action = random.choice(a)
     
-    if(random.random() > epsilon):
-        return best_action
+    if(random.random() > eps):
+        return best_action, eps
     else:
-        return random_action
+        eps *= 0.9
+        return random_action, eps
+        
 
 
 def setup_logger(name, log_file, level=logging.INFO):
