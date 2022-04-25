@@ -8,7 +8,9 @@ Shashank Siripragada, Section 8 NUID: 002193773
 Mayannk Kumaar, Section 8 NUID: 001537115
 
 
-This project requires installation of python 3
+### This project requires installation of python 3
+
+Please install python 3
 
 
 ### Testing
@@ -28,7 +30,7 @@ To train the MENACE algorithm, run
 - iterations : Number of iterations to train MENACE
 	- iterations default : 1000
 - probability : probability that the human agent opponent follows the ideal strategy
-	- probability default : 0.7 (1 - epsilon, where epsilon = 0.3) 
+	- probability default : 0.7 (probability = 1 - epsilon, where epsilon = 0.3) 
 
 ### Play against trained MENACE
 
