@@ -32,19 +32,25 @@ def menace_vs_human(states, ngames):
                     
                     for move in moves:
                         pscore = states[s].count(move)/len(states[s]) * 100
-                        print("Probability for move: {} {} %".format(move, pscore))
+                        
+                        # print("Probability for move: {} {} %".format(move, pscore))
                         
                         #picking move with highest probability, i.e. highest count
                         if(states[s].count(move) > count):
                             most_prob_move = move
                             count = states[s].count(move)
+                    # print(most_prob_move)
                     
-                    #most_prob_move = random.choice(states[s])
-  
+                    # most_prob_move = random.choice(states[s])
+                    
+                    # print(most_prob_move, nrotations, nflips)
+
                     menace_move = get_original_action(most_prob_move, 
                                                         nrotations, 
                                                         nflips)
                     
+                    # print(menace_move)
+
                     game_state[-1][1].append(menace_move)                    
                     game_state[-1][0][menace_move] = 1 
                     game_state.append([game_state[-1][0], []])

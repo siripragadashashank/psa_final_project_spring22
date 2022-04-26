@@ -39,16 +39,16 @@ def strategy(actions, eps):
     a = list(set(actions))
     
     if len(a) == 1:
-        return a[0]
+        return (a[0], eps)
     
     best_action = max(set(actions), key=actions.count)
     random_action = random.choice(a)
     
     if(random.random() > eps):
-        return best_action, eps
+        return (best_action, eps)
     else:
-        eps *= 0.9
-        return random_action, eps
+        # eps *= 0.99
+        return (random_action, eps)
         
 
 

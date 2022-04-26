@@ -78,8 +78,24 @@ def menace_train(states, iterations, probability):
         #     menace_agent_epsilon = 1
         #     human_agent_epsilon = 1
 
-        menace_agent_epsilon = 1 - probability
-        human_agent_epsilon = 1 - probability
+        if i < iterations * (1/4):
+            menace_agent_epsilon = 1 
+            human_agent_epsilon = 1
+        
+        elif i < iterations * (1/2):
+            menace_agent_epsilon = 1
+            human_agent_epsilon = 0
+
+        elif i < iterations * (3/4):
+            menace_agent_epsilon = 0
+            human_agent_epsilon = 1
+
+        elif i < iterations * 1:
+            menace_agent_epsilon = 1 - probability
+            human_agent_epsilon = 1 - probability
+
+        # menace_agent_epsilon = 1
+        # human_agent_epsilon = 1 - probability
 
         training_log.info("Training Game {} Time: {}".format(i, datetime.datetime.now()))
 
@@ -97,7 +113,7 @@ def menace_train(states, iterations, probability):
                 
                 if match:
 
-                    move1_internal, menace_agent_epsilon = strategy(states[s], menace_agent_epsilon)
+                    (move1_internal, menace_agent_epsilon) = strategy(states[s], menace_agent_epsilon)
 
                     move1_actual = get_original_action(move1_internal, rot, flip)
 
@@ -127,7 +143,7 @@ def menace_train(states, iterations, probability):
                 
                 if match:
 
-                    move2_internal, human_agent_epsilon = strategy(states[s], human_agent_epsilon)
+                    (move2_internal, human_agent_epsilon) = strategy(states[s], human_agent_epsilon)
 
                     move2_actual = get_original_action(move2_internal, rot, flip)
                     
