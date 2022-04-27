@@ -36,9 +36,11 @@ To train the MENACE algorithm, run
 
 To play against the trained MENACE, run
 
-`python game.py --mode play`
+`python game.py --mode play --ngames 2`
 
 - mode : play 
 	- for playing against MENACE
+- ngames : Number of games to play against MENACE
+	default : 1
 
 This will initialize a command line interface enabling user to play against MENACE

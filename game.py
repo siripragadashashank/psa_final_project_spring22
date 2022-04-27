@@ -83,7 +83,6 @@ def init_states(mode):
 
 		## adding first possible moves for MENACE - 0, 1, 4
 		states[tuple([0,0,0,0,0,0,0,0,0])] = [0,0,0,0,1,1,1,1,4,4,4,4]
-		# print("No of state: ", len(states))
 
 		save(states, 'init_states.dat')
 		print("States created")
@@ -98,6 +97,7 @@ if __name__ == '__main__':
 
 	parser = ArgumentParser()
 	parser.add_argument('--mode', help='Play against menace or Train it')
+	parser.add_argument('--ngames', help='Number of games to play against menace', default=1)
 	parser.add_argument('--iterations', type=int, help='Number of iterations for training', default=1000)
 	parser.add_argument('--probability', help='Probability for best strategy', default=0.7)
 
@@ -105,7 +105,7 @@ if __name__ == '__main__':
 	states = init_states(args.mode)
 
 	if args.mode == 'play':
-		menace_vs_human(states, 1)
+		menace_vs_human(states, int(args.ngames))
 
 	if args.mode == 'train':
 		start = time.time()
