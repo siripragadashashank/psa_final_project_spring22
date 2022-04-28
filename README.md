@@ -10,7 +10,7 @@ Mayannk Kumaar, Section 8 NUID: 001537115
 
 ### This project requires installation of python 3
 
-Please install python 3
+Please install [python 3](https://www.python.org/downloads/)
 
 
 ### Testing
